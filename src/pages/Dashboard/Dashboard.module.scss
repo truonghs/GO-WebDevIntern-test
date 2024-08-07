@@ -1,0 +1,396 @@
+.container {
+  font-size: large;
+  width: 100%;
+  display: flex;
+  justify-content: start;
+  flex-direction: column;
+  align-items: center;
+  background-color: #e3f2fd;
+  min-height: 100vh;
+}
+.wrapper {
+  max-width: 1200px;
+  padding: 8px;
+  width: 100%;
+}
+.header {
+  background-color: #5372f0;
+  height: 82px;
+  position: sticky;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.header-title {
+  margin: 0;
+  color: white;
+}
+.body {
+  display: flex;
+  align-items: start;
+  height: 100%;
+  padding-top: 40px;
+  gap: 2rem;
+  width: 100%;
+  justify-content: center;
+}
+.body-left {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  max-width: 40vw;
+  justify-content: space-between;
+}
+.searchField {
+  display: flex;
+  justify-content: start;
+  flex-direction: column;
+  gap: 1rem;
+}
+.warn {
+  color: red;
+  font-size: small;
+}
+.searchInput {
+  padding: 10px;
+  border: rgb(0, 130, 173) 1px solid;
+  width: 100%;
+}
+.searchContainer {
+  flex: 1;
+}
+.searchBtn {
+  background-color: #5372f0;
+}
+.history {
+  font-size: medium;
+  color: #5372f0;
+  width: fit-content;
+}
+.history:hover {
+  text-decoration: underline;
+}
+.separate {
+  display: flex;
+  gap: 0.5rem;
+  align-items: center;
+  width: 100%;
+  justify-content: center;
+  border-radius: 4px;
+}
+.separate-left,
+.separate-right {
+  width: 30%;
+  height: 0;
+  border: 1px gray solid;
+}
+.separate-mid {
+  color: gray;
+}
+
+.currentBtn {
+  background-color: gray;
+}
+.searchBtn,
+.currentBtn {
+  flex: 1;
+  padding: 16px;
+  color: white;
+  display: flex;
+  justify-content: center;
+  border-radius: 4px;
+  height: 52px;
+  display: flex;
+  text-align: center;
+  justify-content: center;
+  align-items: center;
+}
+.searchBtn:hover,
+.currentBtn:hover {
+  opacity: 70%;
+  cursor: pointer;
+}
+.btnContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  width: 100%;
+  justify-content: space-between;
+}
+.body-right {
+  flex: 3;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  max-width: 800px;
+}
+.currentWeather-container {
+  background-color: #5372f0;
+  border-radius: 4px;
+  color: white;
+  padding: 16px;
+  display: flex;
+  justify-content: space-between;
+}
+.currentWeather-left {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+.currentWeather-detail {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.futureWeather-container {
+  display: flex;
+  gap: 1rem;
+  flex-direction: column;
+}
+.futureWeather-heading {
+  display: flex;
+  justify-content: space-between;
+  padding: 16px;
+}
+.futureWeatherHeading-loadmore {
+  color: blue;
+}
+.futureWeatherHeading-loadmore:hover {
+  cursor: pointer;
+  opacity: 70%;
+  user-select: none;
+}
+.futureWeatherList-container {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  max-width: 920px;
+  flex-grow: 1;
+  overflow-x: scroll;
+}
+.futureWeatherList-item {
+  min-width: 180px;
+  background-color: gray;
+  color: white;
+  padding: 16px 8px;
+  border-radius: 4px;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  margin-bottom: 12px;
+}
+.futureWeatherListItem-title {
+  font-size: larger;
+}
+.futureWeatherListItem-icon {
+  font-size: 60px;
+  color: blue;
+}
+.futureWeatherListItem-detail {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  font-size: medium;
+}
+.futureWeatherListItemIcon-responsive {
+  display: none;
+  font-size: 30px;
+}
+.futureWeather-container-responsive {
+  display: none;
+}
+.registerField {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  background: white;
+  border: 1px lightgray solid;
+  padding: 16px;
+  border-radius: 8px;
+}
+.inputField {
+  background: #f9fde3;
+  border: rgb(122, 122, 94) 1px solid;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.emailInput {
+  background-color: transparent;
+  flex: 1;
+  padding: 16px 14px;
+}
+.emailConfirm {
+  padding: 12px;
+}
+.emailConfirm:hover {
+  cursor: pointer;
+}
+.emailInput-icon {
+  color: green;
+  font-size: large;
+}
+.registerField-label {
+  text-align: center;
+}
+@media (max-width: 1200px) {
+  .body {
+    gap: 1rem;
+  }
+  .body-right {
+    max-width: 720px;
+  }
+}
+@media (max-width: 960px) {
+  .body {
+    gap: 1rem;
+    align-items: center;
+  }
+  .futureWeather-container {
+    display: none;
+  }
+  .futureWeather-container-responsive {
+    display: block;
+  }
+  .futureWeatherList-container {
+    min-width: 98vw;
+  }
+  .body-right {
+    justify-content: center;
+    flex: 2;
+  }
+  .currentWeather-icon {
+    font-size: 70px;
+  }
+  .registerField {
+    gap: 0.5rem;
+  }
+  .registerField-label {
+    font-size: medium;
+    text-align: center;
+  }
+  .separate {
+    display: none;
+  }
+  .btnContainer {
+    display: flex;
+    flex-direction: row;
+    gap: 0.2rem;
+  }
+  .searchBtn,
+  .currentBtn {
+    padding: 4px 8px;
+  }
+}
+
+@media (max-width: 640px) {
+  .header {
+    width: 100%;
+  }
+  .title {
+    display: flex;
+    justify-content: center;
+  }
+  .wrapper {
+    width: 100%;
+  }
+  .body {
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 10px 10px;
+    gap: 0.5rem;
+  }
+  .body-left {
+    gap: 0.5rem;
+    min-width: 100%;
+  }
+  .searchField {
+    gap: 0.5rem;
+  }
+  .separate {
+    gap: 0.5rem;
+  }
+  .searchBtn,
+  .currentBtn {
+    padding: 12px;
+    font-size: medium;
+    width: 100%;
+    text-wrap: wrap;
+  }
+  .searchContainer {
+    width: 100%;
+  }
+  .separate {
+    display: flex;
+  }
+  .btnContainer {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    align-items: center;
+    width: 100%;
+  }
+
+  .body-right {
+    min-width: 100%;
+    gap: 0.5rem;
+    flex: 1;
+  }
+  .currentWeather-container {
+    flex: 1;
+    padding: 8px;
+  }
+  .currentWeather-left {
+    gap: 0.5rem;
+  }
+  .currentWeather-icon {
+    font-size: 50px;
+  }
+  .currentWeather-title {
+    font-size: large;
+  }
+  .currentWeather-detail {
+    font-size: medium;
+    gap: 0.5rem;
+  }
+  .futureWeather-container {
+    gap: 0.5rem;
+    display: flex;
+  }
+  .futureWeather-heading {
+    padding: 0 10px;
+  }
+  .futureWeatherList-container {
+    flex-direction: column;
+    width: 100%;
+    gap: 0.5rem;
+    justify-content: space-around;
+  }
+  .futureWeatherHeading-txt,
+  .futureWeatherHeading-loadmore {
+    font-size: medium;
+  }
+
+  .futureWeatherList-container {
+    font-size: medium;
+  }
+  .futureWeatherList-item {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+  }
+  .futureWeatherListItem-icon {
+    display: none;
+  }
+  .futureWeatherListItemIcon-responsive {
+    display: block;
+  }
+  .futureWeather-container-responsive {
+    display: none;
+  }
+}

@@ -1,0 +1,62 @@
+@import "normalize.css";
+* {
+  box-sizing: border-box;
+  outline: none;
+  border: none;
+  text-decoration: none;
+  list-style: none;
+}
+input {
+  margin: 0;
+  padding: 0;
+}
+body {
+  font-family: "Quicksand", sans-serif;
+  background-repeat: no-repeat;
+  background-position: center;
+  overflow-x: hidden;
+  margin: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+a {
+  text-decoration: none;
+  color: #000;
+}
+ol,
+ul {
+  padding-left: 0;
+}
+// Global variables
+:root {
+  --hover-color: #01567f;
+  --footer-color: #01344c;
+  --text-white: #fff;
+  --hight-light-color: #fcaf17;
+  --border-color: #4e7182;
+  --main-color: #01567f;
+  --text-gray-color: #6c757d;
+  // admin
+  --admin-bg: #2a3447;
+  --soft-bg: #384256;
+  --dark-bg: #222b3c;
+  --soft-color: #ddd;
+  --dark-color: #2a3447;
+}
+.p-button {
+  margin: 0px 6px;
+}
+.p-breadcrumb {
+  background-color: transparent;
+}
+.p-breadcrumb-list {
+  margin: 0;
+}
+h1,
+h2,
+h3,
+h4 {
+  margin: 0;
+}
