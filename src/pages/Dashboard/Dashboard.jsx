@@ -4,6 +4,9 @@ import React, { useEffect, useState } from "react";
 import axiosClient from "../../config/axios";
 import { Link } from "react-router-dom";
 import { IoArrowForwardOutline } from "react-icons/io5";
+import { FaHome } from "react-icons/fa";
+import Lottie from "lottie-react";
+import { loadingAnimation } from "../../assets/animations";
 function Dashboard() {
   const cx = classNames.bind(style);
   const [city, setCity] = useState("");
@@ -12,6 +15,8 @@ function Dashboard() {
   const [currentPage, setCurrentPage] = useState(1);
   const [warningLabel, setWarningLabel] = useState(false);
   const [emailWarningLabel, setEmailWarningLabel] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
+  const [isLoadingEmail, setIsLoadingEmail] = useState(false);
 
   const fetchWeather = (value) => {
     axiosClient
@@ -51,9 +56,12 @@ function Dashboard() {
           const newWeatherHistory = [weatherHistory];
           localStorage.setItem("weatherHistory", JSON.stringify(newWeatherHistory));
         }
+        setIsLoading(false);
       })
       .catch((error) => {
-        alert(error);
+        alert("City is invalid!");
+        setIsLoading(false);
+
         console.log(error);
       });
   };
@@ -70,6 +78,7 @@ function Dashboard() {
     setEmailWarningLabel(false);
   };
   const handleEmailConfirm = () => {
+    setIsLoadingEmail(true);
     if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition(
         (position) => {
@@ -81,31 +90,43 @@ function Dashboard() {
                 .post("/subscription/register", { email, coordinate })
                 .then((response) => {
                   alert("You have successfully registered. Please check your email to confirm your email address!");
+                  setIsLoadingEmail(false);
                 })
                 .catch((error) => {
+                  alert("Registation failed!");
+                  setIsLoadingEmail(false);
+
                   console.log(error);
                 });
             } else {
+              setIsLoadingEmail(false);
               setEmailWarningLabel(true);
             }
           }
         },
         (error) => {
+          alert("Geolocation is not supported by this browser.");
           console.log(error);
         }
       );
     } else {
+      alert("Geolocation is not supported by this browser.");
+      setIsLoading(false);
+
       console.log("Geolocation is not supported by this browser.");
     }
   };
   const handleSearch = () => {
     if (city) {
+      setIsLoading(true);
       fetchWeather();
     } else {
       setWarningLabel(true);
     }
   };
   const handleUseCurrentLocation = () => {
+    setIsLoading(true);
+
     if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition(
         (position) => {
@@ -116,10 +137,14 @@ function Dashboard() {
           }
         },
         (error) => {
+          setIsLoading(false);
+          alert("Geolocation is not supported by this browser.");
           console.log(error);
         }
       );
     } else {
+      setIsLoading(false);
+      alert("Geolocation is not supported by this browser.");
       console.log("Geolocation is not supported by this browser.");
     }
   };
@@ -132,6 +157,9 @@ function Dashboard() {
   return (
     <div className={cx("container")}>
       <div className={cx("header")}>
+        <Link to={"/"} className={cx("homeLink")}>
+          <FaHome size={32} />
+        </Link>
         <h2 className={cx("header-title")}>Weather Dashboard</h2>
       </div>
       <div className={cx("wrapper")}>
@@ -140,6 +168,7 @@ function Dashboard() {
             <div className={cx("searchField")}>
               <div className={cx("searchField")}>
                 <h4 className={cx("title")}>Enter a City Name</h4>
+
                 <input value={city} onChange={(e) => handleChangeInput(e.target.value)} className={cx("searchInput")} placeholder="E.g, New York, London, Tokyo" />
                 {warningLabel ? <div className={cx("warn")}>City is required!</div> : null}
               </div>
@@ -166,66 +195,78 @@ function Dashboard() {
               <div className={cx("registerField-label")}>Sign up to receive daily weather information</div>
               <div className={cx("inputField")}>
                 <input value={email} onChange={(e) => handleChangeEmail(e.target.value)} className={cx("emailInput")} placeholder="Enter your email here..." />
-                <div onClick={handleEmailConfirm} className={cx("emailConfirm")}>
-                  <IoArrowForwardOutline className={cx("emailInput-icon")} />
-                </div>
+                {!isLoadingEmail ? (
+                  <div onClick={handleEmailConfirm} className={cx("emailConfirm")}>
+                    <IoArrowForwardOutline className={cx("emailInput-icon")} />
+                  </div>
+                ) : (
+                  <div className={cx("loadingEmail")}>
+                    <Lottie className={cx("loadingEmailAnimation")} animationData={loadingAnimation} loop={true} />
+                  </div>
+                )}
               </div>
               {emailWarningLabel ? <div className={cx("warn")}>Email is invalid!</div> : null}
             </div>
           </div>
           {currentWeather ? (
-            <div className={cx("body-right")}>
-              <div className={cx("currentWeather-container")}>
-                <div className={cx("currentWeather-left")}>
-                  <h3 className={cx("currentWeather-title")}>
-                    {currentWeather?.location?.name} ({currentWeather?.current?.last_updated.split(" ")[0]})
-                  </h3>
-                  <div className={cx("currentWeather-detail")}>
-                    <div className={cx("currentTemp")}>Temperature: {currentWeather?.current?.temp_c} C</div>
-                    <div className={cx("currentWind")}>Wind: {Math.round((parseFloat(currentWeather?.current?.wind_kph) / 3.6) * 100) / 100} M/S</div>
-                    <div className={cx("currentHumidity")}>Humidity: {currentWeather?.current?.humidity}%</div>
+            !isLoading ? (
+              <div className={cx("body-right")}>
+                <div className={cx("currentWeather-container")}>
+                  <div className={cx("currentWeather-left")}>
+                    <h3 className={cx("currentWeather-title")}>
+                      {currentWeather?.location?.name} ({currentWeather?.current?.last_updated.split(" ")[0]})
+                    </h3>
+                    <div className={cx("currentWeather-detail")}>
+                      <div className={cx("currentTemp")}>Temperature: {currentWeather?.current?.temp_c} °C</div>
+                      <div className={cx("currentWind")}>Wind: {Math.round((parseFloat(currentWeather?.current?.wind_kph) / 3.6) * 100) / 100} M/S</div>
+                      <div className={cx("currentHumidity")}>Humidity: {currentWeather?.current?.humidity}%</div>
+                    </div>
+                  </div>
+                  <div className={cx("currentWeather-right")}>
+                    <img src={currentWeather?.current?.condition?.icon} className={cx("currentWeather-icon")}></img>
                   </div>
                 </div>
-                <div className={cx("currentWeather-right")}>
-                  <img src={currentWeather?.current?.condition?.icon} className={cx("currentWeather-icon")}></img>
-                </div>
-              </div>
-              <div className={cx("futureWeather-container")}>
-                <div className={cx("futureWeather-heading")}>
-                  <h3 className={cx("futureWeatherHeading-txt")}>4-Day Forecast</h3>
-                  {currentPage <= 3 ? (
-                    <div onClick={handleLoadmore} className={cx("futureWeatherHeading-loadmore")}>
-                      Load more
-                    </div>
-                  ) : null}
-                </div>
+                <div className={cx("futureWeather-container")}>
+                  <div className={cx("futureWeather-heading")}>
+                    <h3 className={cx("futureWeatherHeading-txt")}>4-Day Forecast</h3>
+                    {currentPage <= 3 ? (
+                      <div onClick={handleLoadmore} className={cx("futureWeatherHeading-loadmore")}>
+                        Load more
+                      </div>
+                    ) : null}
+                  </div>
 
-                <div className={cx("futureWeatherList-container")}>
-                  {currentWeather.forecast?.forecastday?.map((item, index) => {
-                    if (index < currentPage * 4) {
-                      return (
-                        <div key={index} className={cx("futureWeatherList-item")}>
-                          <div className={cx("futureWeatherListItem-wrapper")}>
-                            <h4 className={cx("futureWeatherListItem-title")}>({item.date})</h4>
-                            <div className={cx("futureWeatherListItem-icon")}>
+                  <div className={cx("futureWeatherList-container")}>
+                    {currentWeather.forecast?.forecastday?.map((item, index) => {
+                      if (index < currentPage * 4) {
+                        return (
+                          <div key={index} className={cx("futureWeatherList-item")}>
+                            <div className={cx("futureWeatherListItem-wrapper")}>
+                              <h4 className={cx("futureWeatherListItem-title")}>({item.date})</h4>
+                              <div className={cx("futureWeatherListItem-icon")}>
+                                <img src={item.day.condition?.icon} className={cx("currentWeather-icon")}></img>
+                              </div>
+                              <div className={cx("futureWeatherListItem-detail")}>
+                                <div className={cx("futureTemp")}>Temperature: {item.day.maxtemp_c} °C</div>
+                                <div className={cx("futureWind")}>Wind: {Math.round((parseFloat(item.day.maxwind_kph) / 3.6) * 100) / 100} M/S</div>
+                                <div className={cx("futureHumidity")}>Humidity: {item.day.avghumidity}%</div>
+                              </div>
+                            </div>
+                            <div className={cx("futureWeatherListItemIcon-responsive")}>
                               <img src={item.day.condition?.icon} className={cx("currentWeather-icon")}></img>
                             </div>
-                            <div className={cx("futureWeatherListItem-detail")}>
-                              <div className={cx("futureTemp")}>Temperature: {item.day.maxtemp_c} C</div>
-                              <div className={cx("futureWind")}>Wind: {Math.round((parseFloat(item.day.maxwind_kph) / 3.6) * 100) / 100} M/S</div>
-                              <div className={cx("futureHumidity")}>Humidity: {item.day.avghumidity}%</div>
-                            </div>
                           </div>
-                          <div className={cx("futureWeatherListItemIcon-responsive")}>
-                            <img src={item.day.condition?.icon} className={cx("currentWeather-icon")}></img>
-                          </div>
-                        </div>
-                      );
-                    }
-                  })}
+                        );
+                      }
+                    })}
+                  </div>
                 </div>
               </div>
-            </div>
+            ) : (
+              <div className={cx("loading")}>
+                <Lottie className={cx("loadingAnimation")} animationData={loadingAnimation} loop={true} />
+              </div>
+            )
           ) : null}
         </div>
         {currentWeather ? (
@@ -249,7 +290,7 @@ function Dashboard() {
                           <img src={item.day.condition?.icon} className={cx("currentWeather-icon")}></img>
                         </div>
                         <div className={cx("futureWeatherListItem-detail")}>
-                          <div className={cx("futureTemp")}>Temperature: {item.day.maxtemp_c} C</div>
+                          <div className={cx("futureTemp")}>Temperature: {item.day.maxtemp_c} °C</div>
                           <div className={cx("futureWind")}>Wind: {Math.round((parseFloat(item.day.maxwind_kph) / 3.6) * 100) / 100} M/S</div>
                           <div className={cx("futureHumidity")}>Humidity: {item.day.avghumidity}%</div>
                         </div>

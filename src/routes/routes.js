@@ -1,7 +1,11 @@
-import { Dashboard, EmailConfirmation, History, Unsubscribe } from "../pages";
+import { Dashboard, EmailConfirmation, History, Home, Unsubscribe } from "../pages";
 const routes = [
   {
     path: "/",
+    component: Home,
+  },
+  {
+    path: "/dashboard",
     component: Dashboard,
   },
   {

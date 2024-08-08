@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import style from "./History.module.scss";
 import classNames from "classnames/bind";
 import { RiArrowGoBackFill } from "react-icons/ri";
-import { json, Link } from "react-router-dom";
+import { Link } from "react-router-dom";
 function History() {
   const cx = classNames.bind(style);
   const [histories, setHistories] = useState([]);
@@ -41,7 +41,7 @@ function History() {
                         {history.data?.location?.name} ({history.data?.current?.last_updated.split(" ")[0]})
                       </h3>
                       <div className={cx("currentWeather-detail")}>
-                        <div className={cx("currentTemp")}>Temperature: {history.data?.current?.temp_c} C</div>
+                        <div className={cx("currentTemp")}>Temperature: {history.data?.current?.temp_c} °C</div>
                         <div className={cx("currentWind")}>Wind: {Math.round((parseFloat(history.data?.current?.wind_kph) / 3.6) * 100) / 100} M/S</div>
                         <div className={cx("currentHumidity")}>Humidity: {history.data?.current?.humidity}%</div>
                         <div className={cx("currentHumidity")}>Last Updated: {history.data?.current?.last_updated} (Local time)</div>

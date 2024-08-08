@@ -1,0 +1,364 @@
+.container {
+  width: 100%;
+  min-height: 100vh;
+  background-size: cover;
+}
+.cloudy {
+  background: linear-gradient(to top, #87ceeb, #b0e0e6);
+}
+.thunder {
+  background: linear-gradient(to top, #2c3e50, #34495e);
+}
+.rain {
+  background: linear-gradient(to top, #607d8b, #90a4ae);
+}
+.mist {
+  background: linear-gradient(to top, #b0e0e6, #e0ffff);
+}
+.snow {
+  background: linear-gradient(to top, #b3cde0, #ffffff);
+}
+.sunny {
+  background: linear-gradient(to top, #4caf50, #2196f3);
+}
+.header {
+  background-color: rgba(51, 81, 92, 0.6);
+  color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 16px 0px;
+}
+.header-wrapper {
+  max-width: 1200px;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.headerTitle {
+  flex: 2;
+  margin-left: 1rem;
+}
+.headerNav {
+  flex: 1;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+}
+.headerNav-item {
+  transition: all 100ms ease;
+  font-size: large;
+  color: white;
+  font-weight: bold;
+  text-shadow: 1px 1px 2px rgb(83, 83, 83);
+}
+.headerNav-item:hover {
+  cursor: pointer;
+  color: #5372f0;
+  text-decoration: underline;
+}
+.active {
+  color: #5372f0;
+  text-decoration: underline;
+}
+
+.body {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.wrapper {
+  max-width: 1200px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  flex: 1;
+}
+.top {
+  flex: 1;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.animationContainer {
+  width: 12rem;
+}
+.animation {
+}
+.searchField {
+  flex: 0.8;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: #e3f2fd;
+  border-radius: 4px;
+  border-radius: 20px;
+  flex: 1;
+  width: 96%;
+  border: lightgray 1px solid;
+  margin-top: 4rem;
+  box-shadow: 0px 0px 4px 0px gray;
+  position: relative;
+}
+.warn {
+  color: red;
+  font-size: medium;
+  position: absolute;
+  top: -26px;
+  left: 14px;
+}
+.searchInput {
+  flex: 1;
+  background-color: transparent;
+  border-right: 1px gray solid;
+  padding: 0.5rem 1rem;
+}
+.searchBtn {
+  padding: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.searchBtn :hover {
+  cursor: pointer;
+  opacity: 0.8;
+}
+.bottom {
+  display: flex;
+  width: 100%;
+  padding: 1rem;
+  gap: 2rem;
+}
+.current {
+  flex: 1;
+  background-color: rgba(0, 0, 0, 0.15);
+  box-shadow: 0px 0px 8px 0px rgba(0, 0, 0, 0.2);
+  color: white;
+  padding: 1rem;
+  border-radius: 0.5rem;
+  font-size: 1.2rem;
+  width: 40%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+}
+.currentTitle {
+  display: flex;
+  justify-content: space-between;
+  font-weight: bold;
+  font-size: 1.5rem;
+}
+.currentCondition {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.currentTemp {
+  font-size: 3rem;
+}
+.currentIcon {
+  width: 8rem;
+  margin-left: 1rem;
+}
+.conditionDetail {
+  display: flex;
+  justify-content: center;
+  margin: 1rem 0px;
+}
+.currentDetail {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+}
+.line {
+  height: 2rem;
+  width: 0px;
+  border: 1px white solid;
+}
+.currentWind,
+.currentHumidity {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.windTitle {
+  color: rgb(29, 238, 29);
+  font-weight: bold;
+}
+.humidityTitle {
+  color: rgb(29, 189, 238);
+  font-weight: bold;
+}
+.forecastContainer {
+  flex: 2.2;
+  display: flex;
+  justify-content: flex-end;
+  width: 100%;
+}
+.forecast {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  gap: 0.5rem;
+}
+.forecastItem {
+  background-color: rgba(0, 0, 0, 0.15);
+  box-shadow: 0px 0px 8px 0px rgba(0, 0, 0, 0.2);
+  color: white;
+  padding: 1rem;
+  border-radius: 0.5rem;
+  min-width: 14rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+}
+.forecastTitle {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  font-weight: 500;
+  align-items: flex-end;
+}
+.forecastTemp {
+  font-size: 1.2rem;
+}
+.forecastCondition {
+  width: 100%;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.maxTemp {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+}
+.maxTempTitle {
+}
+.maxTempValue {
+  color: rgb(255, 115, 115);
+}
+.overlay {
+  width: 0;
+  height: 100vh;
+  display: block;
+  position: fixed;
+  right: 0px;
+  top: 0px;
+  background-color: rgba(0, 0, 0, 0.4);
+  transition: all ease-in-out 200ms;
+}
+.sideBar {
+  width: 0px;
+  position: fixed;
+  right: 0px;
+  top: 0px;
+  background-color: #58727c;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: start;
+  gap: 2rem;
+  transition: all ease-in-out 400ms;
+  .headerNav-item {
+    font-size: 0px;
+    opacity: 0;
+  }
+}
+.sideBar-active {
+  display: flex;
+  padding: 2rem;
+  width: 40vw;
+  border-left: 1px rgb(98, 147, 163) solid;
+
+  .headerNav-item {
+    font-size: large;
+    opacity: 1;
+  }
+}
+.overlay-active {
+  width: 100%;
+
+  display: block;
+}
+.headerNavBtn {
+  display: none;
+}
+.headerNavBtnIcon {
+  font-size: 1.5rem;
+}
+.headerNavBtn {
+  display: block;
+  display: none;
+  justify-content: end;
+  margin-right: 1rem;
+  border-radius: 50%;
+  padding: 0.5rem;
+  border: 2px white solid;
+}
+.headerNavBtn:hover {
+  cursor: pointer;
+  opacity: 0.8;
+}
+.loadingAnimation {
+  width: 100px;
+  margin-top: 40px;
+}
+
+@media (max-width: 1200px) {
+  .headerNav {
+    flex: 2;
+  }
+  .current {
+    width: 100%;
+  }
+  .bottom {
+    flex-direction: column;
+    align-items: center;
+    width: 90vw;
+  }
+}
+@media (max-width: 960px) {
+  .currentTemp {
+    font-size: 32px;
+  }
+  .headerNav {
+    display: none;
+  }
+  .headerNavBtn {
+    display: flex;
+  }
+  .searchField {
+    width: 90vw;
+    margin-top: 2rem;
+  }
+  .current {
+    width: 100%;
+  }
+  html {
+    font-size: 14px;
+  }
+}
+@media (max-width: 480px) {
+  html {
+    font-size: 12px;
+  }
+  .sideBar-active {
+    width: 70vw;
+  }
+  .forecastItem {
+    scale: 1;
+    padding: 1rem 0.5rem;
+    min-width: 12rem;
+  }
+}
