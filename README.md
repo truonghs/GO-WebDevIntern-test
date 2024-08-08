@@ -1,4 +1,5 @@
 # My G-Weather-Forecast (Front-End)
+![image](https://github.com/user-attachments/assets/dc25e0de-30b4-4de9-ad81-440e15696af6)
 
 Welcome to G-Weather-Forecast. This is an application built using Create React App. Please follow the following introduction to get the project up and running!
 
