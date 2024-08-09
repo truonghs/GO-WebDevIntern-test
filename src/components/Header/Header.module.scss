@@ -1,0 +1,159 @@
+.header {
+  background-color: rgba(51, 81, 92, 1);
+  color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 16px 0px;
+  height: 82px;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  animation-name: openHeader;
+  animation-duration: 1s;
+  z-index: 10;
+}
+.header-wrapper {
+  max-width: 1200px;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  animation-name: openWrapper;
+  animation-duration: 1s;
+}
+.headerTitle {
+  flex: 2;
+  margin-left: 1rem;
+  font-size: 2rem;
+}
+.headerNav {
+  flex: 1;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+}
+.headerNav-item {
+  transition: all 100ms ease;
+  font-size: large;
+  color: white;
+  font-weight: bold;
+  text-shadow: 1px 1px 2px rgb(83, 83, 83);
+}
+.headerNav-item:hover {
+  cursor: pointer;
+  color: #5372f0;
+  text-decoration: underline;
+}
+.overlay {
+  width: 0;
+  height: 100vh;
+  display: block;
+  position: fixed;
+  right: 0px;
+  top: 0px;
+  background-color: rgba(0, 0, 0, 0.4);
+  transition: all ease-in-out 200ms;
+  z-index: 10;
+}
+.sideBar {
+  z-index: 10;
+  width: 0px;
+  position: fixed;
+  right: 0px;
+  top: 0px;
+  background-color: #58727c;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: start;
+  gap: 2rem;
+  transition: all ease-in-out 400ms;
+  .headerNav-item {
+    font-size: 0px;
+    opacity: 0;
+  }
+}
+.sideBar-active {
+  display: flex;
+  padding: 2rem;
+  width: 40vw;
+  border-left: 1px rgb(98, 147, 163) solid;
+
+  .headerNav-item {
+    font-size: large;
+    opacity: 1;
+  }
+}
+.overlay-active {
+  width: 100%;
+
+  display: block;
+}
+.headerNavBtn {
+  display: none;
+}
+.headerNavBtnIcon {
+  font-size: 1.5rem;
+}
+.headerNavBtn {
+  display: block;
+  display: none;
+  justify-content: end;
+  margin-right: 1rem;
+  border-radius: 50%;
+  padding: 0.5rem;
+  border: 2px white solid;
+}
+.headerNavBtn:hover {
+  cursor: pointer;
+  opacity: 0.8;
+}
+
+.active {
+  color: #5372f0;
+  text-decoration: underline;
+}
+@keyframes openHeader {
+  0% {
+    opacity: 0;
+    padding: 0px;
+    height: 0;
+  }
+  100% {
+    opacity: 1;
+    padding: 16px 0px;
+    height: 82px;
+  }
+}
+@keyframes openWrapper {
+  0% {
+    opacity: 0;
+    display: none;
+  }
+  30% {
+    display: flex;
+    opacity: 0;
+  }
+  100% {
+    display: flex;
+
+    opacity: 1;
+  }
+}
+@media (max-width: 1200px) {
+  .headerNav {
+    flex: 2;
+  }
+}
+@media (max-width: 960px) {
+  .headerNav {
+    display: none;
+  }
+  .headerNavBtn {
+    display: flex;
+  }
+}

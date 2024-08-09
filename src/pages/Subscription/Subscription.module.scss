@@ -1,0 +1,156 @@
+.container {
+  background-image: url("../../assets/images/subscriptionBackground.jpg");
+  width: 100%;
+  min-height: 100vh;
+  padding-top: 82px;
+  animation: background 0.5s;
+}
+@keyframes background {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+.warn {
+  color: red;
+  font-size: small;
+}
+.loading {
+  height: 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.loadingAnimation {
+  width: 2rem;
+}
+.formWrapper {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.formContainer {
+  background-color: rgba(255, 255, 255, 0.8);
+  box-shadow: 0px 1px 8px 1px rgba(84, 95, 255, 0.77);
+  padding: 2rem 1rem;
+  border-radius: 0.5rem;
+  max-width: 32rem;
+  margin: 3rem 1rem 0 1rem;
+  display: flex;
+
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 1rem;
+  animation: form 1s;
+}
+@keyframes form {
+  0% {
+    opacity: 0;
+  }
+  50% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+.formTitle {
+  color: #000a9b;
+  text-align: center;
+  font-size: 1.5rem;
+}
+.inputContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  align-items: center;
+  justify-content: start;
+  width: 100%;
+}
+.inputField {
+  background: #f9fde3;
+  border: rgb(122, 122, 94) 1px solid;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 96%;
+  border-radius: 4px;
+  height: 50px;
+}
+.emailInput {
+  background-color: transparent;
+  flex: 1;
+  padding: 16px 14px;
+}
+.currentInput {
+  background-color: transparent;
+  width: 100%;
+  padding: 16px 14px;
+  animation: input 1.5s 0.5s;
+}
+@keyframes input {
+  0% {
+    padding: 0;
+    width: 0%;
+  }
+  100% {
+    padding: 16px 14px;
+    width: 100%;
+  }
+}
+.currentField {
+  display: flex;
+  justify-content: start;
+  align-items: center;
+}
+.currentBtn {
+  background-color: #5372f0;
+  width: 8rem;
+  border-top-left-radius: 4px;
+  border-bottom-left-radius: 4px;
+  user-select: none;
+  height: 100%;
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+.currentBtn:hover {
+  opacity: 0.7;
+  cursor: pointer;
+  box-shadow: 0px 0px 2px 1px gray;
+}
+.btnField {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  justify-content: space-around;
+}
+.subscribeBtn,
+.unsubscribeBtn {
+  width: 8rem;
+  height: 2.5rem;
+  border-radius: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.subscribeBtn {
+  background-color: green;
+  color: white;
+}
+.unsubscribeBtn {
+  background-color: red;
+  color: white;
+}
+.subscribeBtn:hover,
+.unsubscribeBtn:hover {
+  cursor: pointer;
+  opacity: 0.7;
+  box-shadow: 0px 0px 2px 1px gray;
+}

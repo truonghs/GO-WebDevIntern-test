@@ -1,15 +1,14 @@
 import style from "./Dashboard.module.scss";
 import classNames from "classnames/bind";
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import axiosClient from "../../config/axios";
 import { Link } from "react-router-dom";
-import { IoArrowForwardOutline } from "react-icons/io5";
-import { FaHome } from "react-icons/fa";
 import Lottie from "lottie-react";
 import { loadingAnimation } from "../../assets/animations";
+import { Header } from "../../components";
 function Dashboard() {
   const cx = classNames.bind(style);
-  const [city, setCity] = useState("");
+  const [location, setCity] = useState("");
   const [email, setEmail] = useState("");
   const [currentWeather, setCurrentWeather] = useState();
   const [currentPage, setCurrentPage] = useState(1);
@@ -20,7 +19,7 @@ function Dashboard() {
 
   const fetchWeather = (value) => {
     axiosClient
-      .get(`weather/forecast?city=${value ? value : city}&page=${currentPage}`)
+      .get(`weather/forecast?city=${value ? value : location}&page=${currentPage}`)
       .then((response) => {
         setCurrentWeather(response.data);
         console.log(response.data);
@@ -117,7 +116,7 @@ function Dashboard() {
     }
   };
   const handleSearch = () => {
-    if (city) {
+    if (location) {
       setIsLoading(true);
       fetchWeather();
     } else {
@@ -156,12 +155,7 @@ function Dashboard() {
 
   return (
     <div className={cx("container")}>
-      <div className={cx("header")}>
-        <Link to={"/"} className={cx("homeLink")}>
-          <FaHome size={32} />
-        </Link>
-        <h2 className={cx("header-title")}>Weather Dashboard</h2>
-      </div>
+      <Header page={"dashboard"} />
       <div className={cx("wrapper")}>
         <div className={cx("body")}>
           <div className={cx("body-left")}>
@@ -169,7 +163,7 @@ function Dashboard() {
               <div className={cx("searchField")}>
                 <h4 className={cx("title")}>Enter a City Name</h4>
 
-                <input value={city} onChange={(e) => handleChangeInput(e.target.value)} className={cx("searchInput")} placeholder="E.g, New York, London, Tokyo" />
+                <input value={location} onChange={(e) => handleChangeInput(e.target.value)} className={cx("searchInput")} placeholder="E.g, New York, London, Tokyo" />
                 {warningLabel ? <div className={cx("warn")}>City is required!</div> : null}
               </div>
               <div className={cx("btnContainer")}>
@@ -191,8 +185,8 @@ function Dashboard() {
                 </div>
               </div>
             </div>
-            <div className={cx("registerField")}>
-              <div className={cx("registerField-label")}>Sign up to receive daily weather information</div>
+            {/* <div className={cx("registerField")}>
+              <div className={cx("registerField-label")}>Subscribe to receive daily weather information</div>
               <div className={cx("inputField")}>
                 <input value={email} onChange={(e) => handleChangeEmail(e.target.value)} className={cx("emailInput")} placeholder="Enter your email here..." />
                 {!isLoadingEmail ? (
@@ -206,7 +200,7 @@ function Dashboard() {
                 )}
               </div>
               {emailWarningLabel ? <div className={cx("warn")}>Email is invalid!</div> : null}
-            </div>
+            </div> */}
           </div>
           {currentWeather ? (
             !isLoading ? (

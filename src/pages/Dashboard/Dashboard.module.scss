@@ -7,6 +7,7 @@
   align-items: center;
   background-color: #e3f2fd;
   min-height: 100vh;
+  padding-top: 82px;
 }
 .wrapper {
   max-width: 1200px;
@@ -33,6 +34,7 @@
   color: white;
 }
 .body {
+  opacity: 1;
   display: flex;
   align-items: start;
   height: 100%;
@@ -40,6 +42,19 @@
   gap: 2rem;
   width: 100%;
   justify-content: center;
+  animation-name: bodyVisible;
+  animation-duration: 1s;
+}
+@keyframes bodyVisible {
+  0% {
+    opacity: 0;
+  }
+  50% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
 }
 .body-left {
   flex: 1;
@@ -59,6 +74,12 @@
 .warn {
   color: red;
   font-size: small;
+}
+.loading {
+  flex: 3;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 .loadingAnimation {
   width: 100px;

@@ -5,13 +5,12 @@ import axiosClient from "../../config/axios";
 import Lottie from "lottie-react";
 import { cloudyAnimation, rainAnimation, thunderAnimation, snowAnimation, sunnyAnimation, loadingAnimation } from "../../assets/animations";
 import { FaMagnifyingGlass } from "react-icons/fa6";
-import { GrMenu } from "react-icons/gr";
-import { Link } from "react-router-dom";
+import { Header } from "../../components";
+
 function Home() {
   const cx = classNames.bind(style);
   const [data, setData] = useState();
   const [isLoading, setIsLoading] = useState(false);
-  const [sideBarVisible, setSideBarVisible] = useState(false);
   const [animation, setAnimation] = useState(sunnyAnimation);
   const [weather, setWeather] = useState("sunny");
   const [city, setCity] = useState("");
@@ -115,26 +114,7 @@ function Home() {
   };
   return (
     <div className={cx("container", weather)}>
-      <div className={cx("header")}>
-        <div className={cx("header-wrapper")}>
-          <h1 className={cx("headerTitle")}>Weather Forecast</h1>
-          <div className={cx("headerNav")}>
-            <Link to={"/"} className={cx("headerNav-item", "active")}>
-              Home
-            </Link>
-            <Link to={"/dashboard"} className={cx("headerNav-item")}>
-              Dashboard
-            </Link>
-            <Link to={"/subscribe"} className={cx("headerNav-item")}>
-              Subscribe
-            </Link>
-          </div>
-          <div onClick={() => setSideBarVisible(!sideBarVisible)} className={cx("headerNavBtn")}>
-            <GrMenu className={cx("headerNavBtnIcon")} />
-          </div>
-        </div>
-      </div>
-
+      <Header page={"home"} />
       <div className={cx("body")}>
         <div className={cx("wrapper")}>
           <div className={cx("top")}>
@@ -156,31 +136,40 @@ function Home() {
               </div>
             </div>
           </div>
-          {!isLoading ? (
-            <div className={cx("bottom")}>
-              <div className={cx("current")}>
-                <div className={cx("currentTitle")}>
-                  <div className={cx("currentName")}>{data?.location.name}</div>
-                  <div className={cx("currentDate")}>{data?.current.last_updated.split(" ")[0]}</div>
-                </div>
-                <div className={cx("currentCondition")}>
-                  <div className={cx("currentTemp")}>{data?.current.temp_c} °C</div>
-                  <img src={data?.current.condition.icon} className={cx("currentIcon")} />
-                </div>
-                <div className={cx("conditionDetail")}>{data?.current.condition.text}</div>
-                <div className={cx("currentDetail")}>
-                  <div className={cx("currentWind")}>
-                    <div className={cx("windTitle")}>Wind Speed</div>
-                    <div className={cx("windTxt")}>{Math.round((parseFloat(data?.current?.wind_kph) / 3.6) * 100) / 100} M/S</div>
+
+          <div className={cx("bottom")}>
+            <div className={cx("current")}>
+              {!isLoading ? (
+                <div className={cx("")}>
+                  <div className={cx("currentTitle")}>
+                    <div className={cx("currentName")}>{data?.location.name}</div>
+                    <div className={cx("currentDate")}>{data?.current.last_updated.split(" ")[0]}</div>
                   </div>
-                  <div className={cx("line")}></div>
-                  <div className={cx("currentHumidity")}>
-                    <div className={cx("humidityTitle")}>Humidity</div>
-                    <div className={cx("humidityTxt")}> {data?.current?.humidity}%</div>
+                  <div className={cx("currentCondition")}>
+                    <div className={cx("currentTemp")}>{data?.current.temp_c} °C</div>
+                    <img src={data?.current.condition.icon} className={cx("currentIcon")} />
+                  </div>
+                  <div className={cx("conditionDetail")}>{data?.current.condition.text}</div>
+                  <div className={cx("currentDetail")}>
+                    <div className={cx("currentWind")}>
+                      <div className={cx("windTitle")}>Wind Speed</div>
+                      <div className={cx("windTxt")}>{Math.round((parseFloat(data?.current?.wind_kph) / 3.6) * 100) / 100} M/S</div>
+                    </div>
+                    <div className={cx("line")}></div>
+                    <div className={cx("currentHumidity")}>
+                      <div className={cx("humidityTitle")}>Humidity</div>
+                      <div className={cx("humidityTxt")}> {data?.current?.humidity}%</div>
+                    </div>
                   </div>
                 </div>
-              </div>
-              <div className={cx("forecastContainer")}>
+              ) : (
+                <div className={cx("loading")}>
+                  <Lottie className={cx("loadingAnimation")} animationData={loadingAnimation} loop={true} />
+                </div>
+              )}
+            </div>
+            <div className={cx("forecastContainer")}>
+              {!isLoading ? (
                 <div className={cx("forecast")}>
                   {data?.forecast?.forecastday?.map((item, index) => {
                     if (index < 6) {
@@ -199,27 +188,14 @@ function Home() {
                     }
                   })}
                 </div>
-              </div>
+              ) : (
+                <div className={cx("loading")}>
+                  <Lottie className={cx("loadingAnimation")} animationData={loadingAnimation} loop={true} />
+                </div>
+              )}
             </div>
-          ) : (
-            <div className={cx("loading")}>
-              <Lottie className={cx("loadingAnimation")} animationData={loadingAnimation} loop={true} />
-            </div>
-          )}
+          </div>
         </div>
-      </div>
-
-      <div onClick={() => setSideBarVisible(!sideBarVisible)} className={cx("overlay", sideBarVisible ? "overlay-active" : "")}></div>
-      <div className={cx("sideBar", sideBarVisible ? "sideBar-active" : "")}>
-        <Link to={"/"} className={cx("headerNav-item", "active")}>
-          Home
-        </Link>
-        <Link to={"/dashboard"} className={cx("headerNav-item")}>
-          Dashboard
-        </Link>
-        <Link to={"/subscribe"} className={cx("headerNav-item")}>
-          Subscribe
-        </Link>
       </div>
     </div>
   );

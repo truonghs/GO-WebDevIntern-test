@@ -46,6 +46,14 @@
 .error {
   background-color: red;
 }
+.loading {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.loadingAnimation {
+  width: 4rem;
+}
 @media (max-width: 720px) {
   .body {
     scale: 0.9;

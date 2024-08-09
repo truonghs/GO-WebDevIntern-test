@@ -1,4 +1,4 @@
-import { Dashboard, EmailConfirmation, History, Home, Unsubscribe } from "../pages";
+import { Dashboard, EmailConfirmation, History, Home, Subscription, Unsubscribe } from "../pages";
 const routes = [
   {
     path: "/",
@@ -19,6 +19,10 @@ const routes = [
   {
     path: "/unsubscribe",
     component: Unsubscribe,
+  },
+  {
+    path: "/subscription",
+    component: Subscription,
   },
 ];
 

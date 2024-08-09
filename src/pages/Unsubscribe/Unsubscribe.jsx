@@ -3,6 +3,9 @@ import style from "./Unsubscribe.module.scss";
 import classNames from "classnames/bind";
 import { useLocation, useNavigate } from "react-router-dom";
 import axiosClient from "../../config/axios";
+import Lottie from "lottie-react";
+import { loadingAnimation } from "../../assets/animations";
+
 function Unsubscribe() {
   const cx = classNames.bind(style);
   const navigate = useNavigate();
@@ -59,7 +62,13 @@ function Unsubscribe() {
           </div>
         </div>
       ) : null}
-      {isLoading ? <div className={cx("loading")}>Loading...</div> : null}
+      {isLoading ? (
+        <div className={cx("loading")}>
+          <div className={cx("loading")}>
+            <Lottie className={cx("loadingAnimation")} animationData={loadingAnimation} loop={true} />
+          </div>
+        </div>
+      ) : null}
       {isError ? (
         <div className={cx("body")}>
           <h2 className={cx("title", "error")}>Unsubscribe confirmation failed</h2>
