@@ -1,70 +1,74 @@
-# Getting Started with Create React App
+# My G-Weather-Forecast (Front-End)
+![image](https://github.com/user-attachments/assets/dc25e0de-30b4-4de9-ad81-440e15696af6)
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Welcome to G-Weather-Forecast. This is an application built using Create React App. Please follow the following introduction to get the project up and running!
 
-## Available Scripts
+## Table of Contents
 
-In the project directory, you can run:
+- [Requirements](#requirements)
+- [Installation](#installation)
+- [Settings](#settings)
+- [Run the Project](#run-the-project)
+- [Deployment](#deployment)
 
-### `npm start`
+### Requirements
+Make sure your device has the following installed or install them before we continue:
+- [Node.js](https://nodejs.org/) (v16 or higher)
+- [npm](https://www.npmjs.com/) (comes with Node.js) or [Yarn](https://classic.yarnpkg.com/)
+- [git](https://git-scm.com/)
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+## Installation
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+1. Clone the repository:
 
-### `npm test`
+    ```bash
+    git clone https://github.com/truonghs/GO-WebDevIntern-test.git
+    ```
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+2. Navigate into the project directory:
 
-### `npm run build`
+    ```bash
+    cd GO-WebDevIntern-test
+    ```
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+3. Install the project dependencies:
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+    Using npm:
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+    ```bash
+    npm install
+    ```
 
-### `npm run eject`
+    Or using Yarn:
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+    ```bash
+    yarn install
+    ```
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+## Settings
+Add environment variables.\
+At the root of the project, create a .env file and add the following environment variables
+```
+REACT_APP_SERVER_URL = your_server_url
+```
+- Replace your_server_url with your actual server URL.
+- You can use my api server: https://go-webdevintern-test-be.onrender.com
+- This server is deployed on Render's free service so it will be stopped after a period of inactivity. It will take some time on the first request to redo the server deployment process. However, there will be no problem from the next request. So please be patient!
+## Run the Project
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+To start the development server and run the project locally, use the following command:
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+Using npm:
 
-## Learn More
+```bash
+npm start
+```
+Using yarn:
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+```bash
+yarn start
+```
+## Deployment
 
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+The website is deployed with Vercel: [G-Weather-Forecast](https://go-web-dev-intern-test.vercel.app/) 
+- As mentioned above, due to the limitations of the free service in the server-side deployment platform, it will take some time for the **first request**. Please be patient!
